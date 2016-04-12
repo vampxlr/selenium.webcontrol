@@ -1,0 +1,348 @@
+﻿<section id="dashboard-view" class="mainbar" data-ng-controller="stock as vm">
+    <section class="matter">
+        <div class="container">
+
+            <div class="alert alert-info"> Logged In as : {{vm.LoggedInAs}}</div>
+            <div class="row">
+              
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="widget wblue">
+                            <div data-cc-widget-header title="Stock List" allow-collapse="true"></div>
+                            <div class="widget-content ">
+                                <div class="col-md-12" style="padding-bottom:15px">
+
+
+                                    <input style="width:100%" ng-model="vm.search" placeholder="Search term" class="form-control" type="text" value="">
+
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tr>
+                                            <th><a href="" ng-click="predicate = 'itemName'; reverse=false"><em>Item Name</em></a><a href="" ng-click="predicate = '-itemName'; reverse=false">[^]</a></th>
+                                            <th><a href="" ng-click="predicate = 'inStock'; reverse=false"><em>in Stock</em></a><a href="" ng-click="predicate = '-inStock'; reverse=false">[^]</a></th>
+                                            <th><a href="" ng-click="predicate = 'type'; reverse=false"><em>type</em></a><a href="" ng-click="predicate = '-type'; reverse=false">[^]</a></th>
+                                            <th><a href="" ng-click="predicate = 'inStock'; reverse=false"><em>Place Order</em></a><a href="" ng-click="predicate = '-inStock'; reverse=false">[^]</a></th>
+
+                                        </tr>
+
+                                        <tr ng-repeat="stock in vm.stocks | filter:vm.search| orderBy:predicate:reverse">
+                                            <td><em>{{stock.itemName}}</em></td>
+                                            <td><em>{{stock.inStock}}</em></td>
+                                            <td><em>{{stock.type}}</em></td>
+                                            <td> <button ng-click="vm.placeOrderByStockId(stock.id)" ng-if="stock.inStock" class="btn btn-warning btn-xs">Place Order</button> </td>
+
+                                        </tr>
+
+
+                                    </table>
+                                </div>
+
+                            </div>
+                            <div class="widget-foot">
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+
+                    </div> <!--end of col md 6-->
+
+                </div>
+            </div>
+
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Billing Information</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <div style="padding-bottom:20px" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>First Name</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" ng-model="vm.firstName" class="form-control" style="width:100%;" placeholder="First Name" />
+                                    </div>
+
+                                </div>
+
+                            </div> <!--First Name-->
+                            <div style="padding-bottom:20px" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>Last Name</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" ng-model="vm.lastName" class="form-control" style="width:100%;" placeholder="Last Name" />
+                                    </div>
+
+                                </div>
+
+                            </div> <!--Last Name-->
+
+                            <div style="padding-bottom:20px" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>Billing Address 1</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <textarea ng-model="vm.BillingAddress1" placeholder="Enter Billing Address 1..." name cols="" rows="1" class="form-control" style="width:100%;"></textarea>
+                                    </div>
+                                </div>
+                            </div> <!--Billing Add 1 Name-->
+
+                            <div style="padding-bottom:20px;" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>Billing Address 2</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <textarea ng-model="vm.BillingAddress2" placeholder="Enter billing address 2 here..." name cols="" rows="1" class="form-control" style="width:100%;"></textarea>
+                                    </div>
+                                </div>
+                            </div> <!--Billing Add 2 Name-->
+
+
+
+                            <div style="padding-bottom:20px" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>City</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" ng-model="vm.city" class="form-control" style="width:100%;" placeholder="Enter City Name" />
+                                    </div>
+
+                                </div>
+
+                            </div> <!--City Name-->
+                            <div style="padding-bottom:20px" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>Zip</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" ng-model="vm.zip" class="form-control" style="width:100%;" placeholder="Enter Postal Code" />
+                                    </div>
+
+                                </div>
+
+                            </div> <!--Zip Code-->
+                            <div style="padding-bottom:20px" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>Phone</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" ng-model="vm.phone" class="form-control" style="width:100%;" placeholder="Phone No" />
+                                    </div>
+
+                                </div>
+
+                            </div> <!--Phone No-->
+
+
+                            <div style="padding-bottom:20px" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>State</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <select ng-model="vm.state" ng-init="vm.state='AL'" class="form-control" style="width:100%">
+                                            <option value="AL">Alabama</option>
+                                            <option value="AK">Alaska</option>
+                                            <option value="APO">APO</option>
+                                            <option value="AA">AA</option>
+                                            <option value="AE">AE</option>
+                                            <option value="AP">AP</option>
+                                            <option value="AZ">Arizona</option>
+                                            <option value="AR">Arkansas</option>
+                                            <option value="CA">California</option>
+                                            <option value="CO">Colorado</option>
+                                            <option value="CT">Connecticut</option>
+                                            <option value="DE">Delaware</option>
+                                            <option value="DC">District of Columbia</option>
+                                            <option value="FL">Florida</option>
+                                            <option value="GA">Georgia</option>
+                                            <option value="HI">Hawaii</option>
+                                            <option value="ID">Idaho</option>
+                                            <option value="IL">Illinois</option>
+                                            <option value="IN">Indiana</option>
+                                            <option value="IA">Iowa</option>
+                                            <option value="KS">Kansas</option>
+                                            <option value="KY">Kentucky</option>
+                                            <option value="LA">Louisiana</option>
+                                            <option value="ME">Maine</option>
+                                            <option value="MD">Maryland</option>
+                                            <option value="MA">Massachusetts</option>
+                                            <option value="MI">Michigan</option>
+                                            <option value="MN">Minnesota</option>
+                                            <option value="MS">Mississippi</option>
+                                            <option value="MO">Missouri</option>
+                                            <option value="MT">Montana</option>
+                                            <option value="NE">Nebraska</option>
+                                            <option value="NV">Nevada</option>
+                                            <option value="NH">New Hampshire</option>
+                                            <option value="NJ">New Jersey</option>
+                                            <option value="NM">New Mexico</option>
+                                            <option value="NY">New York</option>
+                                            <option value="NC">North Carolina</option>
+                                            <option value="ND">North Dakota</option>
+                                            <option value="OH">Ohio</option>
+                                            <option value="OK">Oklahoma</option>
+                                            <option value="OR">Oregon</option>
+                                            <option value="PA">Pennsylvania</option>
+                                            <option value="RI">Rhode Island</option>
+                                            <option value="SC">South Carolina</option>
+                                            <option value="SD">South Dakota</option>
+                                            <option value="TN">Tennessee</option>
+                                            <option value="TX">Texas</option>
+                                            <option value="UT">Utah</option>
+                                            <option value="VT">Vermont</option>
+                                            <option value="VA">Virginia</option>
+                                            <option value="WA">Washington</option>
+                                            <option value="WV">West Virginia</option>
+                                            <option value="WI">Wisconsin</option>
+                                            <option value="WY">Wyoming</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> <!--State No-->
+                            <div style="padding-bottom:20px" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>Expiration Month</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <select ng-model="vm.expirationMonth" ng-init="vm.expirationMonth='1'" class="form-control" style="width:100%">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> <!--Exp Month No-->
+                            <div style="padding-bottom:20px" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>Expiration year</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <select ng-model="vm.expirationYear" ng-init="vm.expirationYear='2014'" class="form-control" style="width:100%">
+                                            <option value="2014">2014</option>
+                                            <option value="2015">2015</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                            <option value="2024">2024</option>
+                                            <option value="2025">2025</option>
+                                            <option value="2026">2026</option>
+                                            <option value="2027">2027</option>
+                                            <option value="2028">2028</option>
+                                            <option value="2029">2029</option>
+                                            <option value="2030">2030</option>
+                                            <option value="2031">2031</option>
+                                            <option value="2032">2032</option>
+                                            <option value="2033">2033</option>
+                                            <option value="2034">2034</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> <!--Exp Year No-->
+
+                            <div style="padding-bottom:20px" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>CC type</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <select ng-model="vm.ccType" ng-init="vm.ccType='1000'" class="form-control" style="width:100%">
+                                            <option value="1000">Amex</option>
+                                            <option value="1001">Discover</option>
+                                            <option value="1002">MasterCard</option>
+                                            <option value="1003">Visa</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> <!--ccType-->
+
+                            <div style="padding-bottom:20px" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>CC number</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" ng-model="vm.ccNumber" class="form-control" style="width:100%;" placeholder="Credit Card Number" />
+                                    </div>
+
+                                </div>
+
+                            </div> <!--ccNumberr-->
+
+                            <div style="padding-bottom:20px" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>CVV</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" ng-model="vm.cvv" class="form-control" style="width:100%;" placeholder="Enter CVV" />
+                                    </div>
+
+                                </div>
+
+                            </div> <!--cvv-->
+
+                            <div style="padding-bottom:20px" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>Shipping</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <select ng-model="vm.shipping" ng-init="vm.shipping='1000'" class="form-control" style="width:100%">
+                                            <option value="1000">$9.95 Standard Ground Shipping</option>
+                                            <option value="1001">$15.95 Expedited Shipping</option>
+                                            <option value="1002">$26.95 Overnight Express</option>
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> <!--Shipping-->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button ng-if="!vm.placeOrderDisable" ng-click="vm.enterBillingInformation()" type="button" class="btn btn-primary">Place Order</button>
+
+                            <button ng-if="vm.placeOrderDisable" ng-click="vm.enterBillingInformationAsGuest()" type="button" class="btn btn-primary">Place Order As Guest</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+</section>

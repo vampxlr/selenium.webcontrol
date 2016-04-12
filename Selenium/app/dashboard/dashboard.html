@@ -1,0 +1,121 @@
+﻿<section id="dashboard-view" class="mainbar" data-ng-controller="dblogin as vm">
+    <section class="matter">
+        <div class="container">
+
+            <div class="alert alert-info"> Logged In as : {{vm.LoggedInAs}}</div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget wblue">
+                        <div data-cc-widget-header title="Actions"></div>
+                        <div class="widget-content ">
+
+                            <button ng-click="vm.getFirefox()" class="btn btn-primary">Launch Base</button>
+                            <button ng-disabled="vm.RegisterDisable"  class="btn btn-primary" data-toggle="modal" data-target="#RegisterModal">
+                                Register
+                            </button>
+                            <button ng-disabled="vm.LoginDisable" class="btn btn-primary" data-toggle="modal" data-target="#LoginModal">
+                                Login
+                            </button>
+                       
+                            <button ng-disabled="vm.LogOutDisable" ng-click="vm.LogOut()" class="btn btn-primary">LogOut</button>
+                            <!-- Button trigger modal -->
+                            
+
+                        </div>
+                        <div class="widget-foot">
+
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div> 
+         
+
+            </div>
+
+          
+            <!-- Modal -->
+            <div class="modal fade" id="RegisterModal" tabindex="-1" role="dialog" aria-labelledby="RegisterModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="RegisterModalLabel">Registration</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div style="padding-bottom:20px" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>Email</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" ng-model="vm.email" class="form-control" style="width:100%;" placeholder="Email" />
+                                    </div>
+
+                                </div>
+
+                            </div> <!--First Name-->
+                            <div style="padding-bottom:20px" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>Password</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" ng-model="vm.password" class="form-control" style="width:100%;" placeholder="Password" />
+                                    </div>
+
+                                </div>
+
+                            </div> <!--Last Name-->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" ng-click="vm.ManualRegister()" class="btn btn-primary">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="LoginModalLabel">Login</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div style="padding-bottom:20px" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>Email</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" ng-model="vm.email" class="form-control" style="width:100%;" placeholder="Email" />
+                                    </div>
+
+                                </div>
+
+                            </div> <!--First Name-->
+                            <div style="padding-bottom:20px" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <em>Password</em>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" ng-model="vm.password" class="form-control" style="width:100%;" placeholder="Password" />
+                                    </div>
+
+                                </div>
+
+                            </div> <!--Last Name-->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" ng-click="vm.login()" class="btn btn-primary">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </section>
+</section>

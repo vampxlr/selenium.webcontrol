@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@Html.ActionLink("Open","GetFirefox")
+
+@Html.ActionLink("RegisterAndLogin","RegisterAndLogin")
+
+<button id="firefox" >Open FireFox</button>
+
+<script>
+    var url = "api/webapi/GetFirefox";
+
+    $("#firefox").click(function () {
+        $.get(url);
+
+    });
+   
+
+</script>

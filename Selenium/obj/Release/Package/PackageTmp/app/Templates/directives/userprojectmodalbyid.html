@@ -1,0 +1,58 @@
+﻿<div class="modal fade" id="addToProject{{p.userId}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Assign projects to {{p.username}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <button type="button" ng-disabled="disable" ng-click="AddUserToProject()" style="width:100%;" class="btn btn-default"><i class="fa fa-plus"></i>Add to project</button>
+                    </div><!-- end of left selectables -->
+                    <div class="col-md-6">
+                        
+                        <select style="width:100%;" class="form-control" ng-model="selectedOptionUnAssignedProjects" ng-options="project.ProjectName for project in unassignedprojects">
+                            <option value="">Select a Project</option>
+                        </select>
+                    </div><!-- end of left selectables -->
+
+                </div>
+               
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-hover">
+
+                            <thead>
+                                <tr>
+                                    <th>Operation</th>
+                                    <th>Project Name</th>
+                                    <th>Project Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="x in assignedprojects">
+
+                                    <td>
+                                        <button type="button" ng-click="RemoveUserFromProject(x.Id)" class="btn btn-info">Remove From Project</button>
+                                    </td>
+                                    <td>{{x.ProjectName}}</td>
+                                    <td>{{x.ProjectNumber}}</td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               
+            </div>
+        </div>
+    </div>
+</div>

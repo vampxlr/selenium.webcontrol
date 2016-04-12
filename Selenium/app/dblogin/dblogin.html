@@ -1,0 +1,84 @@
+﻿<section id="dashboard-view" class="mainbar" data-ng-controller="dashboard as vm">
+    <section class="matter">
+        <div class="container">
+
+            <div class="alert alert-info"> Logged In as : {{vm.LoggedInAs}}</div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget wblue">
+                        <div data-cc-widget-header title="Actions"></div>
+                        <div class="widget-content ">
+
+                            <button ng-click="vm.getFirefox()" class="btn btn-primary">Launch Base</button>
+                            <button ng-disabled="vm.RegisterDisable" ng-click="vm.RegisterAndLogin()" class="btn btn-primary">Register and Login</button>
+                            <button ng-disabled="vm.LogOutDisable" ng-click="vm.LogOut()" class="btn btn-primary">LogOut</button>
+                            <button ng-disabled="vm.placeOrderDisable" ng-click="vm.placeOrderRandomAll()" class="btn btn-success">Populate Database For Stock</button>
+
+                        </div>
+                        <div class="widget-foot">
+
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div> <!--end of col md 6-->
+
+            <!--</div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget wblue">
+                        <div data-cc-widget-header title="Place Random Order From"></div>
+                        <div class="widget-content ">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button ng-disabled="vm.placeOrderDisable" ng-click="vm.placeOrderRandomFallHoliday()" class="btn btn-success">Fall Holiday</button>
+                                    <button ng-disabled="vm.placeOrderDisable" ng-click="vm.placeOrderRandomCommunion()" class="btn btn-success">Communion</button>
+                                    <button ng-disabled="vm.placeOrderDisable" ng-click="vm.placeOrderRandomFlowerGirl()" class="btn btn-success">FlowerGirl</button>
+                                    <button ng-disabled="vm.placeOrderDisable" ng-click="vm.placeOrderRandomSpringHoliday()" class="btn btn-success">Spring Holiday</button>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="widget-foot">
+
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div> 
+            </div>-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget wblue">
+                        <div data-cc-widget-header title="Old Email List"></div>
+                        <div class="widget-content ">
+                            <em>{{vm.loading}}</em>
+                            <div ng-repeat="email in vm.Emailist">
+
+                                <div class="alert alert-info">  Email: <em>{{email.Email}}@gmail.com</em>  Password: <em>{{email.Password}}</em>  | <button class="btn btn-success" ng-click="vm.Login(email)" ng-disabled="vm.LoginDisable">Login</button>   </div>
+
+                            </div>
+                        </div>
+                        <div class="widget-foot">
+
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div> <!--end of col md 6-->
+
+            </div>
+
+        </div>
+
+
+
+       
+    </section>
+</section>
